@@ -4,17 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter,Route,Routes } from 'react-router-dom';
+import Login from './Login/Login';
+import 'semantic-ui-css/semantic.min.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    {/* <BrowserRouter>
     <Routes>
+    <Route path="/Login" element={<Login/>}></Route>
         <Route path="/" element={ <App /> }>
+         
         </Route>
       </Routes>
     
-    </BrowserRouter>
+    </BrowserRouter> */}
+    <App/>
   </React.StrictMode>
 );
 

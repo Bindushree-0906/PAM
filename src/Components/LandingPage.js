@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import './LandingPage.css'
 import { IconName } from "react-icons/fa";
+import NavBar from './NavBar';
 
 
 export class LandingPage extends Component {
   render() {
     return (
+      
       <div>
+        <NavBar/>
       <div>
       <div className='at-container'>
         <div className='at-item'>Build-Better-Together
@@ -79,3 +82,4 @@ export class LandingPage extends Component {
 }
 
 export default LandingPage
+
