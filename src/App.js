@@ -15,26 +15,19 @@ import Read from './Components/Dashboard/Admin/Read/Read';
 import Create from './Components/Dashboard/Admin/Create/Create';
 import Update from './Components/Dashboard/Admin/Update/Update';
 import Roles from './Components/Dashboard/Roles/Roles';
-import appStore from './Store/Projects/Index';
-import { Provider } from 'react';
-// import AppRouter from './Components/Router/AppRouter';
-
-
-
-
-// const clientId= "http://840665959732-ip9sm2ea6l7ds2vbgooum6ec08fl8k3v.apps.googleusercontent.com/"
+// import CreateAction from './Store/Projects/Actions/CreateAction';
+// import store from './Store/store';
+// import CreateReducer from './Store/Projects/Reducers/CreateReducer';
+// import { Provider } from 'react-redux';
 
 function App() {
  
   return (
 
-    <Provider store={appStore}>
+    // <Provider store={store}>
     <Router>
    
     <div className="App">
-      {/* <AppRouter/>  */}
-      
-  
     <div>
    <Routes>
    <Route exact path='/AdminDashboard' Component={AdminDashboard}/>
@@ -46,8 +39,6 @@ function App() {
    <Route exact path='/' Component={LandingPage}/>
    </Routes>
    </div>
- 
-  
  
       <div>
    
@@ -80,29 +71,10 @@ function App() {
 <Routes>
             
   <Route exact path='/Login' element={<Login/>} />
-
-  
-           </Routes> 
-            
-      {/* // <NavBar/>
-      // <LandingPage/> 
-      // <Footer/> */}
-
-      
-        {/* <AdminDashboard/>   */}
-       
-        
-       
-
-      
-      
-      
-  
-      
+</Routes> 
     
-   
     </Router>
-    </Provider>
+    // </Provider>
   );
 }
 
