@@ -4,8 +4,21 @@ import axios from 'axios'
 import Create from '../Create/Create'
 import './Read.css'
 import {Link}  from 'react-router-dom'
+import { useReducer } from 'react'
 
 export default function Read(){
+    function reducer(state,action)
+    {
+        if (action.type == 'setprojectid') {
+            axios.post(`243ew`,{})
+            return (
+                      
+            );
+          }
+    }
+    const initialstate={projectId,projectDesc,projectName}
+
+    const[state,dispatch]=useReducer(reducer,initialstate)
 
     const[apiData, setApiData]=useState([])
         useEffect(() => {
@@ -17,7 +30,8 @@ export default function Read(){
 
     const setData = (data) => {
         let {id,projectId, projectName, projectDesc}=data;
-        localStorage.setItem('id',id)
+        dispatch({type:'setprojectid'})
+        // localStorage.setItem('id',id)
         localStorage.setItem('projectId', projectId)
         localStorage.setItem('projectName', projectName)
         localStorage.setItem('projectDesc', projectDesc)

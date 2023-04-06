@@ -14,7 +14,6 @@ let navigate= useNavigate();
   console.log(projectName);
 
   const sendDataToAPI = () => {
-  
     axios.post(`https://6429847d5a40b82da4d494b2.mockapi.io/PAM`, {
       projectId,
       projectName,
