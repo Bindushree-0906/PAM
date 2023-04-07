@@ -105,6 +105,7 @@ const initialState={
 }
 
 
+
 const fetchRequest = () => {
   return{
     type: REQUEST
@@ -153,8 +154,9 @@ const fetchUsers = () => {
     dispatch(fetchRequest())
     axios.post('https://6429847d5a40b82da4d494b2.mockapi.io/PAM')
       .then(response => {
-        const users = respone.data
-        dispatch(fetchSuccess(users))
+        const users = response.data
+        dispatch(fetchSuccess(ProjectName))
+        console.log("name", ProjectName)
 
       })
       .catch(error => {
