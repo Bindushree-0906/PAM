@@ -2,9 +2,19 @@ import React, {useEffect, useState} from 'react'
 import { Button, Table } from 'semantic-ui-react'
 import axios from 'axios'
 import Create from '../Create/Create'
-import './Read.css'
+import { NavLink } from 'react-router-dom'
+
 import {Link}  from 'react-router-dom'
 import { useReducer } from 'react'
+import NavBar from '../../../NavBar'
+import  {
+  CDBSidebar,
+  CDBSidebarContent,
+  CDBSidebarFooter,
+  CDBSidebarHeader,
+  CDBSidebarMenu,
+  CDBSidebarMenuItem,
+} from 'cdbreact'
 
 export default function Read(){
     // function reducer(state,action)
@@ -22,30 +32,31 @@ export default function Read(){
 
     const[apiData, setApiData]=useState([])
         useEffect(() => {
-        axios.get('https://6429847d5a40b82da4d494b2.mockapi.io/PAM').then((response)=>{
+        axios.get('https://6429847d5a40b82da4d494b2.mockapi.io/PM').then((response)=>{
         console.log(response.data)  
         setApiData(response.data)
         })
     },[])
 
     const setData = (data) => {
-        let {id,projectId, projectName, projectDesc}=data;
+        let {id,pmId, pmName, projectDesc,projectId,projectName}=data;
         // dispatch({type:'setprojectid'})
         localStorage.setItem('id',id)
+        localStorage.setItem('pmId',pmId)
         localStorage.setItem('projectId', projectId)
         localStorage.setItem('projectName', projectName)
         localStorage.setItem('projectDesc', projectDesc)
     }
     
     const getData = () => {
-        axios.get('https://6429847d5a40b82da4d494b2.mockapi.io/PAM')
+        axios.get('https://6429847d5a40b82da4d494b2.mockapi.io/PM')
             .then((getData) => {
                 setApiData(getData.data);
             })
     }
 
     const OnDelete = (id) => {
-        axios.delete('https://6429847d5a40b82da4d494b2.mockapi.io/PAM/3')
+        axios.delete('https://6429847d5a40b82da4d494b2.mockapi.io/PM')
         .then((getData) => {
             console.log(id.getData());
             
@@ -55,12 +66,35 @@ export default function Read(){
 
 
     return(
-    <div> 
+<div>
+    <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
+    <CDBSidebar textColor="#fff" backgroundColor="#333">
+      <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
+        </CDBSidebarHeader> 
+      <CDBSidebarContent className="sidebar-content">
+          <CDBSidebarMenu>
+            <NavLink exact to="/" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="columns">Home</CDBSidebarMenuItem>
+            </NavLink>
+            
+            <NavLink exact to="/Roles" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="user">Role</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/pmCreate" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="chart-line">Create PM</CDBSidebarMenuItem>
+            </NavLink>
+            
+            </CDBSidebarMenu>
+            </CDBSidebarContent>
+            </CDBSidebar>
+      
   <Table celled className = 'tc'> 
     <Table.Header className='th'>
       <Table.Row colspan='3'>
-        <Table.HeaderCell colspan>Project ID</Table.HeaderCell>
-        <Table.HeaderCell >Project Name</Table.HeaderCell>
+        <Table.HeaderCell colspan>Project-Manager id</Table.HeaderCell>
+        <Table.HeaderCell >Project-Manager-Name</Table.HeaderCell>
+        <Table.HeaderCell>Project Id</Table.HeaderCell>
+        <Table.HeaderCell>Project Name</Table.HeaderCell>
         <Table.HeaderCell>Project Description</Table.HeaderCell>
         <Table.HeaderCell>Update</Table.HeaderCell>
         <Table.HeaderCell>Delete</Table.HeaderCell>
@@ -72,8 +106,12 @@ export default function Read(){
             
             return(
                 <Table.Row>
-                <Table.Cell className='td'>{data.projectId}</Table.Cell>
-                <Table.Cell >{data.projectName}</Table.Cell>
+                  
+                <Table.Cell className='td'>{data.pmId}</Table.Cell>
+                <Table.Cell >{data.pmName}</Table.Cell>
+                <Table.Cell>{data.projectId}</Table.Cell>
+                <Table.Cell>{data.projectName}</Table.Cell>
+
                 <Table.Cell>{data.projectDesc}</Table.Cell>
                 <Table.Cell>
                     <Link to='/Update'>
@@ -94,6 +132,7 @@ export default function Read(){
      
     </Table.Body>
   </Table>
+  </div>
   </div>
 )
 
